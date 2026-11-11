@@ -26,8 +26,9 @@ for (let i = 0; i < 60; i++) {
 //sets initial positions for DVDs on the shelfs
 function resetDVDs(DvdList) {
   let newDvdList = [...DvdList];
-  let X = -shelfData.length + shelfData.thin;
-  let Y = 0;
+  let X = -shelfData.width/2 + shelfData.thin;
+  //initial Y offset to place the DVDs on the actual shelf
+  let Y = -.25;
   let Z = 0;
 
   for (let i = 0; i < newDvdList.length; i++) {
@@ -37,16 +38,16 @@ function resetDVDs(DvdList) {
     X += shelfData.thin + .1; 
 
     //move to the next shelf if we have filled it up
-    if (X > shelfData.length) {
-      X = -shelfData.length + shelfData.thin;
-      Y -= shelfData.thin + shelfData.length;
+    if (X > shelfData.width/2) {
+      X = -shelfData.width/2 + shelfData.thin;
+      Y -= shelfData.height;
     }
   }
 
   return newDvdList;
 }
 
-const shelfData = {numOfShelves: 3, width: 6, length: 8, thin: 0.5 };
+const shelfData = {numOfShelves: 3, depth: 6, height: 8.25, width: 24.25, thin: 0.5 };
 
 function App() {
 
@@ -54,11 +55,12 @@ function App() {
   const [dvds, setDvds] = useState(resetDVDs(testDVDs));//also set initial positions for DVDs
 
   const [shelf, setShelf] = useState(shelfData);
+  const [pulledOutDVDId, setPulledOutDVDId] = useState(null);
 
 
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
-      <VirtualShelf dvds={dvds} shelfData={shelf}/>
+      <VirtualShelf dvds={dvds} shelfData={shelf} pulledOutDVDId={pulledOutDVDId} setPulledOutDVDId={setPulledOutDVDId}/>
     </div>
   )
 }

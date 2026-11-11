@@ -1,4 +1,4 @@
-function ShelfRow({posX, posY, posZ, width, length, thin}){
+function ShelfRow({posX, posY, posZ, depth, height, width, thin }){
 
     const color = "burlywood";
     // const thin =.5;
@@ -9,23 +9,23 @@ function ShelfRow({posX, posY, posZ, width, length, thin}){
     return(
         <group position={[posX, posY, posZ]}>
             {/* Shelf base */}
-            <mesh position={[0, -length/2, 0]}>
-                <boxGeometry args={[2*length, thin, width]}/>
+            <mesh position={[0, -height/2, 0]}>
+                <boxGeometry args={[width, thin, depth]}/>
                 <meshStandardMaterial color={color}/>
             </mesh>
             {/* left shelf wall */}
-            <mesh position={[-length, 0, 0]}>
-                <boxGeometry args={[thin, length, width]}/>
+            <mesh position={[-width/2, 0, 0]}>
+                <boxGeometry args={[thin, height, depth]}/>
                 <meshStandardMaterial color={color}/>
             </mesh>
             {/* right shelf wall */}
-            <mesh position={[length, 0, 0]}>
-                <boxGeometry args={[thin, length, width]}/>
+            <mesh position={[width/2, 0, 0]}>
+                <boxGeometry args={[thin, height, depth]}/>
                 <meshStandardMaterial color={color}/>
             </mesh>
             {/* back shelf wall */}
-            <mesh position={[0, 0, -width/2]}>
-                <boxGeometry args={[2*length, length, thin]}/>
+            <mesh position={[0, 0, -depth/2]}>
+                <boxGeometry args={[width, height, thin]}/>
                 <meshStandardMaterial color={color}/>
             </mesh>
         </group>
