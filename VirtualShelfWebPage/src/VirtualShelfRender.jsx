@@ -5,7 +5,7 @@ import DVD_Data from './DVD_Data.js'
 import ShelfRow from './ShelfRow.jsx'
 import { OrbitControls} from "@react-three/drei"
 
-function VirtualShelfRender({ dvds, shelfData, pulledOutDVDId, setPulledOutDVDId }){
+function VirtualShelfRender({ dvds, setDvds, shelfData, pulledOutDVDId, setPulledOutDVDId }){
     /*
     //helper func stuff, used for debug, displays light in render
   const directionalLightRef = useRef()
@@ -25,7 +25,7 @@ function VirtualShelfRender({ dvds, shelfData, pulledOutDVDId, setPulledOutDVDId
             <ambientLight intensity={0.9}/>
             {/* Render DVDs */}
             {dvds.map((dvd) => (
-                <DVD_Model key={dvd.id} Dvd_Data={dvd} pulledOutDVDId={pulledOutDVDId} setPulledOutDVDId={setPulledOutDVDId}/>
+                <DVD_Model key={dvd.id} Dvd_Data={dvd} setDvds={setDvds} pulledOutDVDId={pulledOutDVDId} setPulledOutDVDId={setPulledOutDVDId}/>
             ))}
 
             {/* Render shelf rows */}
