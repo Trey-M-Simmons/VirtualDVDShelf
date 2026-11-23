@@ -1,5 +1,12 @@
 #personal
 commitNotes.txt
+backendInitializeNotes.txt
+personalNotes.txt
+/Backend/textures/uploads/
+/Backend/textures/
+#exclude front.backend specific README files from git
+/Backend/README.md
+/VirtualShelfWebPage/README.md
 #react
 node_modules/
 build/

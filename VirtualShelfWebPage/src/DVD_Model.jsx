@@ -6,7 +6,12 @@ import { LoopOnce } from 'three'
 
 const gltfDirect = './../models/GenericDVD.gltf';
 
-function DVD_Model({Dvd_Data, pulledOutDVDId, setPulledOutDVDId}){
+// Changing from an untextured material to a texture requires a new shader.
+function updateTextureMaterial(material) {
+    material.needsUpdate = true;
+}
+
+function DVD_Model({Dvd_Data, pulledOutDVDId, setPulledOutDVDId, onDVDClick}){
     // Reference to the DVD mesh, mainly used for keeping track of its CURRENT location, not its shelf location
     const DvdRef = useRef();
 
@@ -306,6 +311,9 @@ function DVD_Model({Dvd_Data, pulledOutDVDId, setPulledOutDVDId}){
 
                 onClick={(event) => {
                                     event.stopPropagation();
+                                    //keep track of the last dvd to be clicked, this is used for showing dvd details and is seperate 
+                                    // from pulled out since the dvd could be clicked to be pushed back in.
+                                    onDVDClick(Dvd_Data.id);
                                     
                                     //prevent triggering for double clicks
                                     if (clickTimeoutRef.current) {
@@ -381,6 +389,7 @@ function DVD_Model({Dvd_Data, pulledOutDVDId, setPulledOutDVDId}){
                         
                         <meshBasicMaterial
                             map={Dvd_Data.outerFrontFaceText ?? null}
+                            onUpdate={updateTextureMaterial}
                             transparent={true}
                             polygonOffset
                             polygonOffsetFactor={-1}/>
@@ -397,6 +406,7 @@ function DVD_Model({Dvd_Data, pulledOutDVDId, setPulledOutDVDId}){
                         
                         <meshBasicMaterial
                             map={Dvd_Data.spineText ?? null}
+                            onUpdate={updateTextureMaterial}
                             transparent={true}
                             polygonOffset
                             polygonOffsetFactor={-1}/>
@@ -413,6 +423,7 @@ function DVD_Model({Dvd_Data, pulledOutDVDId, setPulledOutDVDId}){
                         
                     <meshBasicMaterial
                         map={Dvd_Data.outerBackFaceText ?? null}
+                        onUpdate={updateTextureMaterial}
                         transparent={true}
                         polygonOffset
                         polygonOffsetFactor={-1}/>
