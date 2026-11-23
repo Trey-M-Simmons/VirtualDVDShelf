@@ -1,0 +1,32 @@
+.dvd-info-menu {
+  right: 5rem;
+}
+
+.dvd-info-toggle {
+  font-size: 1.6rem;
+  font-weight: 600;
+  font-family: Georgia, serif;
+}
+
+.dvd-info-panel {
+  right: -3.75rem;
+}
+
+.dvd-info-details {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.dvd-info-details dt {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.dvd-info-details dd {
+  margin: 0.2rem 0 0;
+}
+
+.dvd-info-description {
+  white-space: pre-wrap;
+}
